@@ -1,27 +1,55 @@
-// bono por resultados por porcentaje
 object bonoPorcentaje {
-	method monto(empleado) { return empleado.sueldoNeto() * 10 / 100 }
+
+	method monto(empleado) {
+		return empleado.sueldoNeto() * 10 / 100
+	}
+
 }
 
-
-// bono por resultados de monto fijo
 object bonoMontoFijo {
-	// agregar el método que se necesita
+
+	method monto(empleado) {
+		return 800
+	}
+
 }
 
-
-// agregar bonos por presentismo  
 object bonoPresentismoNormal {
-	// agregar el método que se necesita
-}
-// agregar bonos ajuste y demagogico
- 
 
-/*
- * Bono nulo: sirve para resultados y para presentismo, cuando el importe es 0 
- * (o "nada")
- */
+	const bonoFijo = 2000
+	const presentismoMinimo = 1
+
+	method descuentoPorFaltas(empleado) {
+		return 1000 * empleado.cantidadDeFaltas()
+	}
+
+	method monto(empleado) {
+		if (empleado.cantidadDeFaltas() > presentismoMinimo) {
+			return 0
+		} else {
+			return bonoFijo - self.descuentoPorFaltas(empleado)
+		}
+	}
+
+}
+
 object bonoNulo {
-	method monto(empleado) { return 0 } 
+
+	method monto(empleado) {
+		return 0
+	}
+
+}
+
+object bonoAjuste {
+
+	method monto(empleado) {
+		return if (empleado.cantidadDeFaltas() == 0) 100 else 0
+	}
+
+}
+
+object bonoDemagogico {
+	// TODO
 }
 

@@ -2,19 +2,17 @@ import pepe.*
 import bonos.*
 import categorias.*
 
-describe "sueldo pepe" {
-	test "Test inicial 1" {
-		/* esta parte está comentada porque falta agregar los métodos
-		 * correspondientes en el objeto pepe. 
-		 * Descomentar las cuatro líneas que siguen para que el test funcione correctamente. 
-		 */
-//		pepe.setCategoria(cadete)
-//		pepe.setBonoResultado(bonoMontoFijo)
-//		pepe.setBonoPresentismo(bonoPresentismoNormal)
-//		pepe.setCantidadDeFaltas(3)
-		
-		assert.equals(20000 + 800 + 0, pepe.sueldo())
-	}
 
-	
+describe "sueldo pepe" {
+	test "Pepe como cadete, con bono resultado de monto fijo, y 
+    bono presentismo normal. Simular que faltó 3 días. Debería tener $20800 de sueldo." {
+		
+
+		pepe.categoria(cadete)
+		pepe.bonoResultado(bonoMontoFijo)
+		pepe.bonoPresentismo(bonoPresentismoNormal)
+		pepe.cantidadDeFaltas(3)
+		
+		assert.equals(20800, pepe.sueldo())
+	}	
 }
